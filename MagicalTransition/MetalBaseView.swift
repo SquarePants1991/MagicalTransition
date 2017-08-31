@@ -58,7 +58,7 @@ class MetalBaseView: UIView {
         let imageData = UnsafeMutableRawPointer.allocate(bytes: Int(width * height * bytesPerPixel), alignedTo: 8)
         
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let imageContext = CGContext.init(data: imageData, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: width * bytesPerPixel, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGImageByteOrderInfo.order32Big.rawValue )
+        let imageContext = CGContext.init(data: imageData, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: width * bytesPerPixel, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue | CGBitmapInfo.byteOrder32Big.rawValue )
         UIGraphicsPushContext(imageContext!)
         imageContext?.translateBy(x: 0, y: CGFloat(height))
         imageContext?.scaleBy(x: 1, y: -1)
@@ -66,9 +66,8 @@ class MetalBaseView: UIView {
         UIGraphicsPopContext()
         
         let descriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: .rgba8Unorm, width: width, height: height, mipmapped: false)
-        descriptor.usage = .shaderRead
         let texture = device.makeTexture(descriptor: descriptor)
-        texture?.replace(region: MTLRegionMake2D(0, 0, width, height), mipmapLevel: 0, withBytes: imageData, bytesPerRow: width * bytesPerPixel)
+        texture.replace(region: MTLRegionMake2D(0, 0, width, height), mipmapLevel: 0, withBytes: imageData, bytesPerRow: width * bytesPerPixel)
         return texture
     }
     
@@ -97,7 +96,7 @@ class MetalBaseView: UIView {
         commandQueue = device.makeCommandQueue()
         commandQueue.label = "main metal command queue"
         
-        let defaultLibrary = device.makeDefaultLibrary()!
+        let defaultLibrary = device.newDefaultLibrary()!
         let fragmentProgram = defaultLibrary.makeFunction(name: "passThroughFragment")!
         let vertexProgram = defaultLibrary.makeFunction(name: "passThroughVertex")!
         
@@ -120,9 +119,9 @@ class MetalBaseView: UIView {
         renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0);
         renderPassDescriptor.colorAttachments[0].loadAction = .clear
         
-        let commandBuffer = commandQueue.makeCommandBuffer()!
+        let commandBuffer = commandQueue.makeCommandBuffer()
         commandBuffer.label = "Frame command buffer"
-        let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)!
+        let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
         renderEncoder.label = "render encoder"
         renderEncoder.pushDebugGroup("begin draw")
         renderEncoder.setRenderPipelineState(pipelineState)

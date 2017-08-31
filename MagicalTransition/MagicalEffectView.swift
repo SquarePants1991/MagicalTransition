@@ -90,12 +90,12 @@ class MagicalEffectView: MetalBaseView {
     
     // 渲染
     override func draw(renderEncoder: MTLRenderCommandEncoder) {
-        renderEncoder.setVertexBuffer(self.vertexBuffer, offset: 0, index: 0)
-        renderEncoder.setFragmentTexture(self.imageTexture, index: 0)
+        renderEncoder.setVertexBuffer(self.vertexBuffer, offset: 0, at: 0)
+        renderEncoder.setFragmentTexture(self.imageTexture, at: 0)
         
         let uniformBuffer = device.makeBuffer(bytes: self.uniforms.data(), length: Uniforms.sizeInBytes(), options: MTLResourceOptions.cpuCacheModeWriteCombined)
-        renderEncoder.setVertexBuffer(uniformBuffer, offset: 0, index: 1)
-        renderEncoder.setFragmentBuffer(uniformBuffer, offset: 0, index: 0)
+        renderEncoder.setVertexBuffer(uniformBuffer, offset: 0, at: 1)
+        renderEncoder.setFragmentBuffer(uniformBuffer, offset: 0, at: 0)
 
         
         renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: self.vertexArray.count / 5)

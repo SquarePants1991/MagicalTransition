@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,6 +14,10 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MagicalTransition" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rwC-Q5-I5L"/>
+                        <viewControllerLayoutGuide type="bottom" id="uff-P9-nYi"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,7 +37,6 @@
                             <constraint firstItem="PwI-hq-AlR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="nEi-Wd-cS5"/>
                             <constraint firstItem="PwI-hq-AlR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oLx-Jz-JrB"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -42,6 +46,10 @@
         <scene sceneID="RVw-ao-pVl">
             <objects>
                 <viewController storyboardIdentifier="presented" id="Lxy-u3-PJ3" customClass="PresentedViewController" customModule="MagicalTransition" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lkz-0X-kIv"/>
+                        <viewControllerLayoutGuide type="bottom" id="2vT-mb-a0W"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="presented" id="9T1-6a-DOa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,17 +88,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lyB-ey-xrr" firstAttribute="centerY" secondItem="wQC-Fn-lwP" secondAttribute="centerY" id="2aY-V2-fww"/>
-                            <constraint firstItem="mP3-5W-FhZ" firstAttribute="trailing" secondItem="ACJ-BN-kTV" secondAttribute="trailing" constant="16" id="4Vm-cO-Zuo"/>
-                            <constraint firstItem="wQC-Fn-lwP" firstAttribute="top" secondItem="mP3-5W-FhZ" secondAttribute="top" constant="20" id="8vR-UM-c15"/>
+                            <constraint firstAttribute="trailing" secondItem="ACJ-BN-kTV" secondAttribute="trailing" constant="16" id="4Vm-cO-Zuo"/>
+                            <constraint firstItem="wQC-Fn-lwP" firstAttribute="top" secondItem="Lkz-0X-kIv" secondAttribute="bottom" constant="20" id="8vR-UM-c15"/>
                             <constraint firstItem="lyB-ey-xrr" firstAttribute="leading" secondItem="wQC-Fn-lwP" secondAttribute="trailing" constant="20" id="EUL-mG-pTi"/>
                             <constraint firstItem="6m0-AX-daB" firstAttribute="centerY" secondItem="lyB-ey-xrr" secondAttribute="centerY" id="ImV-nh-CQY"/>
                             <constraint firstItem="ACJ-BN-kTV" firstAttribute="top" secondItem="lyB-ey-xrr" secondAttribute="bottom" constant="40" id="Tje-TP-DYg"/>
-                            <constraint firstItem="mP3-5W-FhZ" firstAttribute="trailing" secondItem="6m0-AX-daB" secondAttribute="trailing" constant="16" id="UDc-m0-Chc"/>
-                            <constraint firstItem="wQC-Fn-lwP" firstAttribute="leading" secondItem="mP3-5W-FhZ" secondAttribute="leading" constant="16" id="ZMP-Xo-Gbr"/>
-                            <constraint firstItem="ACJ-BN-kTV" firstAttribute="leading" secondItem="mP3-5W-FhZ" secondAttribute="leading" constant="16" id="gFP-bB-Wms"/>
-                            <constraint firstItem="mP3-5W-FhZ" firstAttribute="bottom" secondItem="ACJ-BN-kTV" secondAttribute="bottom" constant="6" id="qPf-d2-jsO"/>
+                            <constraint firstAttribute="trailing" secondItem="6m0-AX-daB" secondAttribute="trailing" constant="16" id="UDc-m0-Chc"/>
+                            <constraint firstItem="wQC-Fn-lwP" firstAttribute="leading" secondItem="9T1-6a-DOa" secondAttribute="leading" constant="16" id="ZMP-Xo-Gbr"/>
+                            <constraint firstItem="ACJ-BN-kTV" firstAttribute="leading" secondItem="9T1-6a-DOa" secondAttribute="leading" constant="16" id="gFP-bB-Wms"/>
+                            <constraint firstItem="2vT-mb-a0W" firstAttribute="top" secondItem="ACJ-BN-kTV" secondAttribute="bottom" constant="6" id="qPf-d2-jsO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="mP3-5W-FhZ"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sfv-pV-KN1" userLabel="First Responder" sceneMemberID="firstResponder"/>
